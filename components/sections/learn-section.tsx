@@ -32,7 +32,7 @@ export function LearnSection() {
       title: "Rust",
       description: "Build Programs on solana with rust",
       icon: "https://imgs.search.brave.com/OrLGhleMF2hZGU6mWL1U5M0EaAjSTWJPvxqiH0SqS0w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ldXJv/cnVzdC5ldS9pbWFn/ZXMvcnVzdC1sb2dv/LnBuZw",
-      link: "https://rust.org",
+      link: "https://rust-lang.org/",
       isImage: true,
     },
   ]
