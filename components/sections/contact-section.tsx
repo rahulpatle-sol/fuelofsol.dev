@@ -1,6 +1,6 @@
 "use client"
 
-import { Mail, MapPin } from "lucide-react"
+import { Mail, MapPin } from 'lucide-react'
 import { useReveal } from "@/hooks/use-reveal"
 import { useState, type FormEvent } from "react"
 import { MagneticButton } from "@/components/magnetic-button"
@@ -14,21 +14,18 @@ export function ContactSection() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
       return
     }
 
     setIsSubmitting(true)
 
-    // Simulate form submission (replace with actual API call later)
     await new Promise((resolve) => setTimeout(resolve, 1500))
 
     setIsSubmitting(false)
     setSubmitSuccess(true)
     setFormData({ name: "", email: "", message: "" })
 
-    // Reset success message after 5 seconds
     setTimeout(() => setSubmitSuccess(false), 5000)
   }
 
@@ -50,12 +47,12 @@ export function ContactSection() {
                 <br />
                 talk
               </h2>
-              <p className="font-mono text-xs text-foreground/60 md:text-base">/ Get in touch</p>
+              <p className="font-mono text-xs text-foreground/60 md:text-base">/ Build with Us</p>
             </div>
 
             <div className="space-y-4 md:space-y-8">
               <a
-                href="mailto:hello@studio.com"
+                href="mailto:fuelofsol@gmail.com"
                 className={`group block transition-all duration-700 ${
                   isVisible ? "translate-x-0 opacity-100" : "-translate-x-16 opacity-0"
                 }`}
@@ -66,7 +63,7 @@ export function ContactSection() {
                   <span className="font-mono text-xs text-foreground/60">Email</span>
                 </div>
                 <p className="text-base text-foreground transition-colors group-hover:text-foreground/70 md:text-2xl">
-                  hello@studio.com
+                  fuelofsol@gmail.com
                 </p>
               </a>
 
@@ -80,24 +77,51 @@ export function ContactSection() {
                   <MapPin className="h-3 w-3 text-foreground/60" />
                   <span className="font-mono text-xs text-foreground/60">Location</span>
                 </div>
-                <p className="text-base text-foreground md:text-2xl">New York, NY</p>
+                <p className="text-base text-foreground md:text-2xl">India</p>
               </div>
 
               <div
-                className={`flex gap-2 pt-2 transition-all duration-700 md:pt-4 ${
+                className={`flex gap-4 pt-2 transition-all duration-700 md:pt-4 ${
                   isVisible ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"
                 }`}
                 style={{ transitionDelay: "500ms" }}
               >
-                {["Twitter", "Instagram", "LinkedIn", "Dribbble"].map((social, i) => (
-                  <a
-                    key={social}
-                    href="#"
-                    className="border-b border-transparent font-mono text-xs text-foreground/60 transition-all hover:border-foreground/60 hover:text-foreground/90"
-                  >
-                    {social}
-                  </a>
-                ))}
+                <a
+                  href="https://discord.gg/ZckgFCXge"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-accent"
+                  aria-label="Discord"
+                >
+                  <i className="ri-discord-line text-xl" />
+                </a>
+                <a
+                  href="https://github.com/fuel-of-sol"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-accent"
+                  aria-label="GitHub"
+                >
+                  <i className="ri-github-line text-xl" />
+                </a>
+                <a
+                  href="https://www.reddit.com/r/fuelofsol/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-accent"
+                  aria-label="Reddit"
+                >
+                  <i className="ri-reddit-line text-xl" />
+                </a>
+                <a
+                  href="https://x.com/fuelofsol"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-accent"
+                  aria-label="X"
+                >
+                  <i className="ri-twitter-x-line text-xl" />
+                </a>
               </div>
             </div>
           </div>
@@ -166,12 +190,12 @@ export function ContactSection() {
                   variant="primary"
                   size="lg"
                   className="w-full disabled:opacity-50"
-                  onClick={isSubmitting ? undefined : undefined}
+                  disabled={isSubmitting}
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </MagneticButton>
                 {submitSuccess && (
-                  <p className="mt-3 text-center font-mono text-sm text-foreground/80">Message sent successfully!</p>
+                  <p className="mt-3 text-center font-mono text-sm text-accent">Message received! We'll be in touch soon.</p>
                 )}
               </div>
             </form>

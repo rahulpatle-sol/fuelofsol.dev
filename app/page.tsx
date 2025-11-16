@@ -3,12 +3,15 @@
 import { Shader, ChromaFlow, Swirl } from "shaders/react"
 import { CustomCursor } from "@/components/custom-cursor"
 import { GrainOverlay } from "@/components/grain-overlay"
-import { WorkSection } from "@/components/sections/work-section"
-import { ServicesSection } from "@/components/sections/services-section"
-import { AboutSection } from "@/components/sections/about-section"
+import { HeroSection } from "@/components/sections/hero-section"
+import { CommunitySectionNew } from "@/components/sections/community-section"
+import { BlockchainVisualization } from "@/components/sections/blockchain-viz"
+import { LearnSection } from "@/components/sections/learn-section"
+import { PartnersSection } from "@/components/sections/partners-section"
 import { ContactSection } from "@/components/sections/contact-section"
 import { MagneticButton } from "@/components/magnetic-button"
 import { useRef, useEffect, useState } from "react"
+import { SolanaFeaturesSection } from "@/components/sections/solana-features-section"
 
 export default function Home() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -79,7 +82,7 @@ export default function Home() {
       const deltaX = touchStartX.current - touchEndX
 
       if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 50) {
-        if (deltaY > 0 && currentSection < 4) {
+        if (deltaY > 0 && currentSection < 6) {
           scrollToSection(currentSection + 1)
         } else if (deltaY < 0 && currentSection > 0) {
           scrollToSection(currentSection - 1)
@@ -116,8 +119,10 @@ export default function Home() {
         })
 
         const sectionWidth = scrollContainerRef.current.offsetWidth
-        const newSection = Math.round(scrollContainerRef.current.scrollLeft / sectionWidth)
-        if (newSection !== currentSection) {
+        const scrollLeft = scrollContainerRef.current.scrollLeft
+        const newSection = Math.round(scrollLeft / sectionWidth)
+
+        if (newSection !== currentSection && newSection >= 0 && newSection <= 6) {
           setCurrentSection(newSection)
         }
       }
@@ -149,7 +154,7 @@ export default function Home() {
         const scrollLeft = scrollContainerRef.current.scrollLeft
         const newSection = Math.round(scrollLeft / sectionWidth)
 
-        if (newSection !== currentSection && newSection >= 0 && newSection <= 4) {
+        if (newSection !== currentSection && newSection >= 0 && newSection <= 6) {
           setCurrentSection(newSection)
         }
 
@@ -184,8 +189,8 @@ export default function Home() {
       >
         <Shader className="h-full w-full">
           <Swirl
-            colorA="#1275d8"
-            colorB="#e19136"
+            colorA="#1e90ff"
+            colorB="#00ff88"
             speed={0.8}
             detail={0.8}
             blend={50}
@@ -197,19 +202,19 @@ export default function Home() {
             fineY={40}
           />
           <ChromaFlow
-            baseColor="#0066ff"
-            upColor="#0066ff"
-            downColor="#d1d1d1"
-            leftColor="#e19136"
-            rightColor="#e19136"
-            intensity={0.9}
+            baseColor="#1e90ff"
+            upColor="#00ff88"
+            downColor="#7c3aed"
+            leftColor="#1e90ff"
+            rightColor="#00ff88"
+            intensity={0.85}
             radius={1.8}
             momentum={25}
             maskType="alpha"
-            opacity={0.97}
+            opacity={0.95}
           />
         </Shader>
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-black/40" />
       </div>
 
       <nav
@@ -221,24 +226,22 @@ export default function Home() {
           onClick={() => scrollToSection(0)}
           className="flex items-center gap-2 transition-transform hover:scale-105"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground/15 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-foreground/25">
-            <span className="font-sans text-xl font-bold text-foreground">A</span>
-          </div>
-          <span className="font-sans text-xl font-semibold tracking-tight text-foreground">Acme</span>
+          <img src="/logo.png" alt="Fuel of Sol" className="h-20 w-20 rounded-full" />
+          <span className="font-sans text-xl font-bold tracking-tight text-foreground">Fuel of Sol</span>
         </button>
 
         <div className="hidden items-center gap-8 md:flex">
-          {["Home", "Work", "Services", "About", "Contact"].map((item, index) => (
+          {["Home", "Community", "Blockchain", "Features", "Learn", "Partners", "Contact"].map((item, index) => (
             <button
               key={item}
               onClick={() => scrollToSection(index)}
               className={`group relative font-sans text-sm font-medium transition-colors ${
-                currentSection === index ? "text-foreground" : "text-foreground/80 hover:text-foreground"
+                currentSection === index ? "text-accent" : "text-foreground/80 hover:text-accent"
               }`}
             >
               {item}
               <span
-                className={`absolute -bottom-1 left-0 h-px bg-foreground transition-all duration-300 ${
+                className={`absolute -bottom-1 left-0 h-px bg-accent transition-all duration-300 ${
                   currentSection === index ? "w-full" : "w-0 group-hover:w-full"
                 }`}
               />
@@ -246,9 +249,20 @@ export default function Home() {
           ))}
         </div>
 
-        <MagneticButton variant="secondary" onClick={() => scrollToSection(4)}>
-          Get Started
-        </MagneticButton>
+        <div className="flex items-center gap-4">
+          <a href="https://discord.gg/ZckgFCXge" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-accent">
+            <i className="ri-discord-line text-xl"></i>
+          </a>
+          <a href="https://github.com/fuel-of-sol" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-accent">
+            <i className="ri-github-line text-xl"></i>
+          </a>
+          <a href="https://www.reddit.com/r/fuelofsol/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-accent">
+            <i className="ri-reddit-line text-xl"></i>
+          </a>
+          <a href="https://x.com/fuelofsol" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-accent">
+            <i className="ri-twitter-x-line text-xl"></i>
+          </a>
+        </div>
       </nav>
 
       <div
@@ -259,52 +273,12 @@ export default function Home() {
         }`}
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {/* Hero Section */}
-        <section className="flex min-h-screen w-screen shrink-0 flex-col justify-end px-6 pb-16 pt-24 md:px-12 md:pb-24">
-          <div className="max-w-3xl">
-            <div className="mb-4 inline-block animate-in fade-in slide-in-from-bottom-4 rounded-full border border-foreground/20 bg-foreground/15 px-4 py-1.5 backdrop-blur-md duration-700">
-              <p className="font-mono text-xs text-foreground/90">WebGL Powered Design</p>
-            </div>
-            <h1 className="mb-6 animate-in fade-in slide-in-from-bottom-8 font-sans text-6xl font-light leading-[1.1] tracking-tight text-foreground duration-1000 md:text-7xl lg:text-8xl">
-              <span className="text-balance">
-                Creative experiences
-                <br />
-                in fluid motion
-              </span>
-            </h1>
-            <p className="mb-8 max-w-xl animate-in fade-in slide-in-from-bottom-4 text-lg leading-relaxed text-foreground/90 duration-1000 delay-200 md:text-xl">
-              <span className="text-pretty">
-                Transforming digital spaces with dynamic shader effects and real-time visual experiences that captivate
-                and inspire.
-              </span>
-            </p>
-            <div className="flex animate-in fade-in slide-in-from-bottom-4 flex-col gap-4 duration-1000 delay-300 sm:flex-row sm:items-center">
-              <MagneticButton
-                size="lg"
-                variant="primary"
-                onClick={() => window.open("https://v0.app/templates/R3n0gnvYFbO", "_blank")}
-              >
-                Open in v0
-              </MagneticButton>
-              <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection(2)}>
-                View Demo
-              </MagneticButton>
-            </div>
-          </div>
-
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-in fade-in duration-1000 delay-500">
-            <div className="flex items-center gap-2">
-              <p className="font-mono text-xs text-foreground/80">Scroll to explore</p>
-              <div className="flex h-6 w-12 items-center justify-center rounded-full border border-foreground/20 bg-foreground/15 backdrop-blur-md">
-                <div className="h-2 w-2 animate-pulse rounded-full bg-foreground/80" />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <WorkSection />
-        <ServicesSection />
-        <AboutSection scrollToSection={scrollToSection} />
+        <HeroSection />
+        <CommunitySectionNew scrollToSection={scrollToSection} />
+        <BlockchainVisualization />
+        <SolanaFeaturesSection />
+        <LearnSection />
+        <PartnersSection />
         <ContactSection />
       </div>
 
