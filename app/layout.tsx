@@ -10,7 +10,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Fuel of Sol - Solana Developer Community",
   description: "A community of developers building lean and shipping products on Solana. Join us to collaborate, learn, and build the future of web3.",
-favicon:"/logo.png:
+favicon:'/logo.png':
 }
 
 export default function RootLayout({
