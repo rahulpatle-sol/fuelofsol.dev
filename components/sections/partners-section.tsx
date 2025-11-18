@@ -8,7 +8,7 @@ export function PartnersSection() {
   const partners = [
     { name: "Solana", logo: "/solana-logo.png", url: "https://solana.org" },
     { name: "Superteam", logo: "https://imgs.search.brave.com/W5EdZs4DLsSoy6d_lnwT7QmiAcThbHA6JSKDlhWQX0o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9mcmFt/ZXJ1c2VyY29udGVu/dC5jb20vaW1hZ2Vz/L29SQXp1aDNrclRS/QkQ4UmZEWEx2VGlT/Q1kucG5n", url: "https://superteam.fun" },
-    { name: "Turbine", logo: "https://www.turbin3.org/images/turbin3.svg", url: "https://turbine3.com" },
+    { name: "Turbine", logo: "https://www.turbin3.org/images/turbin3.svg", url: "https://turbine3.org" },
     { name: "Blueshift", logo: "/blueshift-logo.png", url: "https://blueshift.gg" },
   ]
 
